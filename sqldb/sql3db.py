@@ -305,8 +305,10 @@ class SQL3Util():
                 rosPattern = '/action'
             else:
                 rosPattern = ''
-            fullTypePath = '{}{}'.format(dType[2], rosPattern)
-            rtnDict[dType[0]] = [dType[1],fullTypePath, keyString, str(len(json.loads(dType[3]))).zfill(2), memberError]
+            # display the typepath with a containing pattern type (msg/srv/action)
+            # fullTypePath = '{}{}'.format(dType[2], rosPattern)
+            # rtnDict[dType[0]] = [dType[1],fullTypePath, keyString, str(len(json.loads(dType[3]))).zfill(2), memberError]
+            rtnDict[dType[0]] = [dType[1], dType[2], keyString, str(len(json.loads(dType[3]))).zfill(2), memberError]
         return rtnDict
 
     # update a row's TAGS, by idKey
