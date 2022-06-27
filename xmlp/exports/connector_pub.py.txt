@@ -1,0 +1,27 @@
+###############################################################################
+# (c) 2005-2015 Copyright, Real-Time Innovations.  All rights reserved.       #
+# No duplications, whole or partial, manual or electronic, may be made        #
+# without express written permission.  Any such copies, or revisions thereof, #
+# must display this notice unaltered.                                         #
+# This code contains trade secrets of Real-Time Innovations, Inc.             #
+###############################################################################
+# For more information, refer to the examples and documentation for 
+# RTI Connector at: https://github.com/rticommunity/rticonnextdds-connector-py
+from sys import path as sysPath
+from os import path as osPath
+import time
+filepath = osPath.dirname(osPath.realpath(__file__))
+import rticonnextdds_connector as rti
+
+with rti.open_connector(
+        config_name="MyParticipantLibrary::MyDPart",
+        url=filepath + "/<%$<GroupXMLFileName>$%>") as connector:
+
+<%$<ListPubWriters>$%>
+    
+    for i in range(1, 100):
+<%$<ListWriteOps>$%>
+
+        time.sleep(0.8)
+
+    print("Finished ...")

@@ -1,0 +1,10 @@
+{
+  "dbLoadPath": "dbfiles",
+  "exportPath": ".",
+  "scanPath": ".",
+  "scanDbStorePath": "dbfiles",
+  "lastLoadedDbFiles": [
+    "dbfiles/ros2h.db"
+  ],
+  "reloadLastDbOnStartup": true
+}

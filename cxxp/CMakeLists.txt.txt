@@ -1,0 +1,42 @@
+cmake_minimum_required(VERSION 3.3.2)
+project (cros2_genapp)
+
+if(DEFINED ENV{NDDSHOME})
+  set(NDDSHOME $ENV{NDDSHOME})
+else()
+  message(FATAL_ERROR "NDDSHOME (env var) is not set")
+endif()
+
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/resources/cmake)
+find_package(RTIConnextDDS EXACT "6" REQUIRED)
+
+# - Point to the source dirs and files ----------
+include_directories(
+    "src/generated"
+    "src/typeclass" 
+    ${CONNEXTDDS_INCLUDE_DIRS}
+)
+
+# Set paths
+set(PATH_CODEGEN ${CMAKE_CURRENT_SOURCE_DIR}/src/generated)
+# Set files generated from code gen
+set(FILES_CODEGEN
+  ${PATH_CODEGEN}/<%$<IDLFileNameOnly>$%>.cxx
+  ${PATH_CODEGEN}/<%$<IDLFileNameOnly>$%>Plugin.cxx
+  )
+# Run Codegen to generate the source code files for the types
+include(ConnextDdsCodegen)
+connextdds_rtiddsgen_run(
+  IDL_FILE ${PATH_CODEGEN}/<%$<IDLFileNameOnly>$%>.idl
+  OUTPUT_DIRECTORY ${PATH_CODEGEN}
+  LANG C++11
+  UNBOUNDED
+  )
+add_custom_target(codegen_sources
+  DEPENDS ${FILES_CODEGEN})
+# - Executables to build -----------------------------------------------------
+add_executable(<%$<IDLFileNameOnly>$%>_app
+  src/<%$<IDLFileNameOnly>$%>_app/<%$<IDLFileNameOnly>$%>_app.cxx
+<%$<ListSourceFilesCMake>$%>  
+)
+target_link_libraries(<%$<IDLFileNameOnly>$%>_app PUBLIC RTIConnextDDS::cpp2_api)
