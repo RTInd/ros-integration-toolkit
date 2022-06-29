@@ -507,6 +507,8 @@ class TypeRepoUI(tk.Tk):
 	def launchSelectDBasePathDialog(self, *args):
 		self.scanDBaseFilePath = os.path.realpath(fd.askdirectory(title='select', initialdir=self.MyConfig.cfgVal['scanDbStorePath']))
 		self.scanDBasePathValue.set(self.scanDBaseFilePath)
+		if not os.path.exists(self.scanDBaseFilePath):
+			os.makedirs(self.scanDBaseFilePath)
 		self.MyConfig.cfgVal['scanDbStorePath'] = self.scanDBaseFilePath
 		self.MyConfig.updateFile()
 
@@ -665,6 +667,8 @@ class TypeRepoUI(tk.Tk):
 	def launchSelectExportPathDialog(self, *args):
 		self.exportFilePath = os.path.realpath(fd.askdirectory(title='select', initialdir=self.MyConfig.cfgVal['exportPath']))
 		self.exportPathValue.set(self.exportFilePath)
+		if not os.path.exists(self.exportFilePath):
+			os.makedirs(self.exportFilePath)
 		self.MyConfig.cfgVal['exportPath'] = self.exportFilePath
 		self.MyConfig.updateFile()
 
