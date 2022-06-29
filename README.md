@@ -18,8 +18,8 @@ Launch from a command line using python 3, as in:
 
 A GUI application will be displayed:  
 
-    ![Toolkit Screenshot](images/screenshot.png)
-    
+![Toolkit Screenshot](images/screenshot.png)
+
 The right side of the application is a type preview pane, and the left
 side is a tabbed interface for Scanning, Querying, and Editing the data type info, as well as a list view of
 the currently-loaded data types from the database file(s).   Click on the list column headers to sort.
