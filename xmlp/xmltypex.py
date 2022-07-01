@@ -184,6 +184,8 @@ def export_xml_type_file(trec, typeFileName, typeNameList=[]):
     xmlTypeFile.append('</dds>')
 
     # write to file
+    if not typeFileName.endswith('.xml'):
+        typeFileName = typeFileName + '.xml'
     f = open(typeFileName, "w")
     for line in xmlTypeFile:
         f.write(line + '\n')
@@ -244,7 +246,9 @@ def export_xml_connector_cfg_file(trec, typeFileName, typeNameList):
     connectorFile.append('  </domain_participant_library>')
     connectorFile.append('</dds>')
 
-    # write to config XML file
+    # write to XML config file
+    if not typeFileName.endswith('.xml'):
+        typeFileName = typeFileName + '.xml'
     f = open(typeFileName, "w")
     for line in connectorFile:
         f.write(line + '\n')
@@ -278,7 +282,7 @@ def export_xml_connector_cfg_file(trec, typeFileName, typeNameList):
         idx += 1
 
     # write the app source code file
-    pyFileName = typeFileName.replace('_connector.xml', '_app.py')
+    pyFileName = typeFileName.replace('.xml', '_app.py')
     fw = open(pyFileName, "w")
     for line in frbuf:
         fw.write(line)
@@ -338,6 +342,8 @@ def export_xml_routsvc_cfg_file(trec, typeFileName, typeNameList):
     configFile.append('</dds>')
 
     # write to file
+    if not typeFileName.endswith('.xml'):
+        typeFileName = typeFileName + '.xml'
     f = open(typeFileName, "w")
     for line in configFile:
         f.write(line + '\n')
@@ -381,6 +387,8 @@ def export_xml_recsvc_cfg_file(trec, typeFileName, typeNameList):
     configFile.append('</dds>')
 
     # write to file
+    if not typeFileName.endswith('.xml'):
+        typeFileName = typeFileName + '.xml'
     f = open(typeFileName, "w")
     for line in configFile:
         f.write(line + '\n')
@@ -434,6 +442,8 @@ def export_xml_webintsvc_cfg_file(trec, typeFileName, typeNameList):
     configFile.append('</dds>')
 
     # write to file
+    if not typeFileName.endswith('.xml'):
+        typeFileName = typeFileName + '.xml'
     f = open(typeFileName, "w")
     for line in configFile:
         f.write(line + '\n')
@@ -508,6 +518,8 @@ def export_xml_prototyper_cfg_file(trec, typeFileName, typeNameList):
     configFile.append('</dds>')
 
     # write to file
+    if not typeFileName.endswith('.xml'):
+        typeFileName = typeFileName + '.xml'
     f = open(typeFileName, "w")
     for line in configFile:
         try:

@@ -32,6 +32,9 @@ def export_idl_cxx11_app(trec, typeFileName, typeNameList):
     # convert types to IDL and write to file
     idlTypeFile = idltypex.export_idl_type(trec)
     idlFileToWrite = Path(tfDir, 'src/generated', tf.name)
+    if idlFileToWrite.suffix != '.idl':
+        idlFileToWrite = idlFileToWrite.with_suffix('.idl')
+    print(idlFileToWrite)
     f = open(idlFileToWrite, "w")
     for line in idlTypeFile:
         try:

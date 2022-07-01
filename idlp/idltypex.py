@@ -212,6 +212,8 @@ def export_idl_type_file(trec, typeFileName, typeNameList=[]):
     idlTypeFile = export_idl_type(trec)
 
     # write IDL to file
+    if not typeFileName.endswith('.idl'):
+        typeFileName = typeFileName + '.idl'
     f = open(typeFileName, "w")
     for line in idlTypeFile:
         try:
